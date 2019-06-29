@@ -1,0 +1,86 @@
+<mat-tab-group>
+  <mat-tab label="SIGN IN">
+    <div *ngIf="loginService.afAuth.user | async as user; else showLogin">
+      <div class="container">
+        <p>You are logged in with this email: <br/>{{ user.email }}!</p>
+        <div align="center">
+          <button mat-button color="warn" (click)="loginService.logout()">Logout</button>
+        </div>
+      </div>
+    </div>
+    <ng-template #showLogin>
+      <form [formGroup]="signIn" style="margin-top: 10%">
+        <div class="container">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Email" formControlName="email" required>
+            <mat-error *ngIf="signIn.invalid">{{getSignInEmailMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="container">
+          <mat-form-field style="width: 100%">
+            <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password"
+              required>
+            <button mat-icon-button matSuffix>
+              <mat-icon (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="signIn.invalid">{{getSignInPasswordMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="container" align="center" style="margin-top: 10%">
+          <button (click)="loginService.signIn(signIn.value); closeDialog()" mat-raised-button [disabled]="signIn.invalid" color="primary">Sign in</button>
+        </div>
+      </form>
+
+      <p>or sign in via</p>
+      <div class="container">
+        <a (click)="loginService.googleLogin()" class="btn btn-social btn-google" style="color: white; width: 300px; margin-bottom: 3%">
+          <span class="fa fa-google"></span> Sign in with Google
+        </a>
+      </div>
+      <div class="container">
+        <a (click)="loginService.facebookLogin()" class="btn btn-social btn-facebook" style="color: white; width: 300px; margin-bottom: 3%">
+          <span class="fa fa-facebook"></span> Sign in with Facebook
+        </a>
+      </div>
+      <div class="container">
+        <a (click)="loginService.twitterLogin()" class="btn btn-social btn-twitter" style="color: white; width: 300px; margin-bottom: 3%">
+          <span class="fa fa-twitter"></span> Sign in with Twitter
+        </a>
+      </div>
+      <div class="container">
+        <a (click)="loginService.gitHubLogin()" class="btn btn-social btn-github" style="color: white; width: 300px; margin-bottom: 3%">
+          <span class="fa fa-github"></span> Sign in with GitHub
+        </a>
+      </div>
+    </ng-template>
+    <div align="right">
+      <button mat-button (click)="closeDialog()">Close</button>
+    </div>
+  </mat-tab>
+  <mat-tab label="SIGN UP">
+    <form [formGroup]="signUp" style="margin-top: 10%">
+      <div class="container">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Email" formControlName="email" required>
+          <mat-error *ngIf="signUp.invalid">{{getSignUpEmailMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="container">
+        <mat-form-field style="width: 100%">
+          <input matInput placeholder="Password" [type]="hide ? 'password' : 'text'" formControlName="password"
+            required>
+          <button mat-icon-button matSuffix>
+            <mat-icon (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="signUp.invalid">{{getSignUpPasswordMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="container" align="center" style="margin-top: 10%">
+        <button (click)="loginService.signUp(signUp.value); closeDialog()" mat-raised-button [disabled]="signUp.invalid" color="primary">Sign up</button>
+      </div>
+    </form>
+    <div align="right">
+      <button mat-button (click)="closeDialog()">Close</button>
+    </div>
+  </mat-tab>
+</mat-tab-group>

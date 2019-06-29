@@ -1,0 +1,6 @@
+<div *ngFor="let message of messageService.messages" class="container-fluid alert {{message.messageColour}} alert-dismissible fade show" role="alert">
+  <strong>{{message.messageHeader}}</strong> {{message.messageBody}}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

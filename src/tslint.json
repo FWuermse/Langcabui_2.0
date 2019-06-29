@@ -5,12 +5,16 @@
             true,
             "attribute",
             "app",
+            "dialog",
+            "Dialog",
             "camelCase"
         ],
         "component-selector": [
             true,
             "element",
             "app",
+            "dialog",
+            "Dialog",
             "kebab-case"
         ]
     }

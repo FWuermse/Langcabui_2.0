@@ -1,10 +1,70 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {ErrorStateMatcher, MatDialog, MatDialogRef} from '@angular/material';
+import {FormBuilder, FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'untitled';
+
+  constructor(public dialog: MatDialog) {
+  }
+
+  openDialog(): void {
+    this.dialog.open(LoginDialog);
+  }
+}
+
+@Component({
+  selector: 'login-dialog',
+  templateUrl: 'login-dialog.html'
+})
+export class LoginDialog {
+  hide = true;
+
+  constructor(public dialogRef: MatDialogRef<LoginDialog>, private fb: FormBuilder, public loginService: LoginService) {
+  }
+
+  signIn = this.fb.group({
+    email: ['', Validators.compose([Validators.required, Validators.email])],
+    password: ['', Validators.compose(([Validators.minLength(8), Validators.maxLength(25)]))]
+  });
+
+  signUp = this.fb.group({
+    email: ['', Validators.compose([Validators.required, Validators.email])],
+    password: ['', Validators.compose(([Validators.minLength(8), Validators.maxLength(25)]))]
+  });
+
+  getSignInEmailMessage() {
+    return this.signIn.controls['email'].hasError('required') ? 'You must enter a value' :
+      this.signIn.controls['email'].hasError('email') ? 'Not a valid email' :
+        '';
+  }
+
+  getSignInPasswordMessage() {
+    return this.signIn.controls['password'].hasError('required') ? 'You must enter a value' :
+      this.signIn.controls['password'].hasError('minlength') ? 'Your password is too short' :
+        this.signIn.controls['password'].hasError('maxlength') ? 'Your password is too long' :
+          '';
+  }
+
+  getSignUpEmailMessage() {
+    return this.signUp.controls['email'].hasError('required') ? 'You must enter a value' :
+      this.signUp.controls['email'].hasError('email') ? 'Not a valid email' :
+        '';
+  }
+
+  getSignUpPasswordMessage() {
+    return this.signUp.controls['password'].hasError('required') ? 'You must enter a value' :
+      this.signUp.controls['password'].hasError('minlength') ? 'Your password is too short' :
+        this.signUp.controls['password'].hasError('maxlength') ? 'Your password is too long' :
+          '';
+  }
+
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
 }

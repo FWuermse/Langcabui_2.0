@@ -21,7 +21,7 @@ import {
   MatTabsModule,
   MatInputModule,
   MatTableModule,
-  MatSortModule, MatPaginatorModule,
+  MatSortModule, MatPaginatorModule, MatChipsModule,
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { WordsComponent } from './words/words.component';
@@ -30,6 +30,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MessageComponent } from './message/message.component';
 import { AddComponent } from './add/add.component';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AddComponent } from './add/add.component';
     DashboardComponent,
     LoginDialog,
     MessageComponent,
-    AddComponent
+    AddComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +63,7 @@ import { AddComponent } from './add/add.component';
     MatSortModule,
     HttpClientModule,
     MatPaginatorModule,
+    MatChipsModule,
   ],
   entryComponents: [LoginDialog],
   providers: [],

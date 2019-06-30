@@ -21,21 +21,7 @@ export class WordsService {
   constructor(private http: HttpClient) {
   }
 
-  getWords(token: string, query: string, language: string, sort: string, sortDirection: string): Observable<Word[]> {
-    const subject = new Subject<Word[]>();
-    this.http.get<Pagable>(`
-    ${this.url}/?search=${query}&language=${language}&page=${this.currentPage}&size=5&sort=${sort},${sortDirection}`,
-      {
-        headers: {'Authorization': `${token}`}
-      }).subscribe((pagable: Pagable) => {
-      this.totalPages = pagable.totalPages;
-      this.currentPage = pagable.number + 1;
-      subject.next(pagable.content);
-    });
-    return subject.asObservable();
-  }
-
-  getWordsSearch(
+  getAll(
     token: string,
     query: string,
     language: string,
@@ -55,6 +41,24 @@ export class WordsService {
       subject.next(pagable.content);
     });
     return subject.asObservable();
+  }
+
+  add(word: Word, token: string) {
+    return this.http.post(this.url + '/', word, {
+      headers: {'Authorization': `${token}`}
+    });
+  }
+
+  delete(word: Word, token: string) {
+    return this.http.delete(`${this.url}/${word.wordId}`, {
+      headers: {'Authorization': `${token}`}
+    });
+  }
+
+  getById(token: string, id: number) {
+    return this.http.get(`${this.url}/${id}`, {
+      headers: {'Authorization': `${token}`}
+    });
   }
 }
 

@@ -22,7 +22,7 @@ export class WordsComponent implements OnInit {
   button: boolean;
   token: string;
 
-  displayedColumns: string[] = ['wordEnglish', 'wordPinyin', 'wordChinese'];
+  displayedColumns: string[] = ['wordEnglish', 'wordPinyin', 'wordChinese', 'wordId'];
   dataSource = new MatTableDataSource(this.words);
 
   constructor(
@@ -33,7 +33,7 @@ export class WordsComponent implements OnInit {
   }
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
@@ -51,7 +51,7 @@ export class WordsComponent implements OnInit {
   private getWords(language: string, size: number, page: number, pageSort: string, pageSortDirection: string) {
     this.loginService.afAuth.idToken.subscribe((token: string) => {
       this.token = token;
-      this.wordsService.getWordsSearch(
+      this.wordsService.getAll(
         token, this.searchQuery, language, pageSort, size, page, pageSortDirection
       ).subscribe((words: undefined) => {
           this.words = words;
@@ -77,5 +77,13 @@ export class WordsComponent implements OnInit {
 
   search() {
     this.getWords(this.language, this.pageSize, 0, this.pageSort, this.pageSortDirection);
+  }
+
+  delete(word: Word) {
+    this.loginService.afAuth.idToken.subscribe((token: string) => {
+      this.wordsService.delete(word, token).subscribe( n => {
+        this.getWords(this.language, this.pageSize, 0, this.pageSort, this.pageSortDirection);
+      });
+    });
   }
 }

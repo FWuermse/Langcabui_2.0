@@ -3,17 +3,19 @@ import {FormBuilder, Validators} from '@angular/forms';
 import {LanguageService} from '../language.service';
 import {LoginService} from '../login.service';
 import {MessageService} from '../message/message.service';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 import {WordsService} from '../words.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.scss']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.scss']
 })
-export class AddComponent implements OnInit {
+export class EditComponent implements OnInit {
 
   constructor(
+    private route: ActivatedRoute,
     private wordsService: WordsService,
     private languageService: LanguageService,
     private loginService: LoginService,
@@ -34,13 +36,13 @@ export class AddComponent implements OnInit {
 
   ngOnInit() {
     this.loginService.afAuth.idToken.subscribe((token: string) => {
-      this.languageService.getLanguage(token).subscribe((language: string) => {
-          this.language = language;
-          this.word.controls['language'].setValue(language);
-        },
-        (err) => {
-          this.messageService.messages.concat(err);
-        });
+      const id = +this.route.snapshot.paramMap.get('id');
+      this.wordsService.getById(token, id).subscribe((word: Word) => {
+        this.word = this.fb.group(word);
+      },
+      (err) => {
+        this.messageService.messages.concat(err);
+      });
     });
   }
 
@@ -50,7 +52,7 @@ export class AddComponent implements OnInit {
 
   add() {
     this.loginService.afAuth.idToken.subscribe((token: string) => {
-      this.wordsService.add(this.word.value, token).subscribe(n => {
+      this.wordsService.add(this.word.value, token).subscribe( n => {
         this.location.back();
       });
     });

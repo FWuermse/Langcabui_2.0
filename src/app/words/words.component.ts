@@ -4,7 +4,6 @@ import {LanguageService} from './../language.service';
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {WordsService} from '../words.service';
-import {FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-words',
@@ -30,8 +29,7 @@ export class WordsComponent implements OnInit {
     private languageService: LanguageService,
     private wordsService: WordsService,
     private loginService: LoginService,
-    private messageService: MessageService,
-    private formBuilder: FormBuilder) {
+    private messageService: MessageService) {
   }
 
   @ViewChild(MatSort, {static: true}) sort: MatSort;

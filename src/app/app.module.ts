@@ -27,7 +27,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { WordsComponent } from './words/words.component';
 import { WordDetailComponent } from './word-detail/word-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MessageComponent } from './message/message.component';
 import { AddComponent } from './add/add.component';
 
@@ -60,7 +60,7 @@ import { AddComponent } from './add/add.component';
     MatTableModule,
     MatSortModule,
     HttpClientModule,
-    MatPaginatorModule
+    MatPaginatorModule,
   ],
   entryComponents: [LoginDialog],
   providers: [],

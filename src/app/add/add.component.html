@@ -1,1 +1,30 @@
-<p>add works!</p>
+<div class="container">
+  <button mat-button aria-label="back" (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <form class="example-form" [formGroup]="word">
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Your word" formControlName="wordEnglish" required>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Translation {{language}}" formControlName="wordChinese" required>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Pronunciation optional" formControlName="wordPinyin">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Language" formControlName="language" required>
+      </mat-form-field>
+      <button mat-fab aria-label="back" (click)="goBack()" color="accent" [disabled]="!word.valid">
+        <mat-icon>check</mat-icon>
+      </button>
+    </div>
+  </form>
+</div>

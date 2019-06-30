@@ -2,6 +2,7 @@ import { MessageService, Message } from './message/message.service';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
+import {__await} from 'tslib';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +12,19 @@ export class LoginService {
   constructor(public afAuth: AngularFireAuth, private messageService: MessageService) { }
 
   googleLogin() {
-    this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider());
+    __await(this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider()));
   }
 
   facebookLogin() {
-    this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider());
+    __await(this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider()));
   }
 
   twitterLogin() {
-    this.afAuth.auth.signInWithPopup(new auth.TwitterAuthProvider());
+    __await(this.afAuth.auth.signInWithPopup(new auth.TwitterAuthProvider()));
   }
 
   gitHubLogin() {
-    this.afAuth.auth.signInWithPopup(new auth.GithubAuthProvider());
+    __await(this.afAuth.auth.signInWithPopup(new auth.GithubAuthProvider()));
   }
 
   signIn(form: any) {
@@ -40,7 +41,7 @@ export class LoginService {
     this.afAuth.auth.createUserWithEmailAndPassword(form.email, form.password)
       .then( (user) => {
         this.messageService.messages.push(new Message('Success', `Your account has been created: ${user.user.email}`, 'alert-success'));
-        user.user.sendEmailVerification();
+        __await(user.user.sendEmailVerification());
         this.afAuth.auth.signOut();
       })
       .then( () => {
@@ -56,6 +57,6 @@ export class LoginService {
   }
 
   logout() {
-    this.afAuth.auth.signOut();
+    __await(this.afAuth.auth.signOut());
   }
 }

@@ -1,29 +1,10 @@
-import { MessageService, Message } from './../message/message.service';
-import { LoginService } from './../login.service';
-import { LanguageService } from './../language.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSort, MatTableDataSource } from '@angular/material';
-import {catchError, tap} from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
-
-export interface PeriodicElement {
-  wordEnglish: string;
-  wordPinyin: string;
-  wordChinese: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {wordEnglish: '1', wordPinyin: 'Hydrogen', wordChinese: 'H'},
-  {wordEnglish: '2', wordPinyin: 'Helium', wordChinese: 'He'},
-  {wordEnglish: '3', wordPinyin: 'Lithium', wordChinese: 'Li'},
-  {wordEnglish: '4', wordPinyin: 'Beryllium', wordChinese: 'Be'},
-  {wordEnglish: '5', wordPinyin: 'Boron', wordChinese: 'B'},
-  {wordEnglish: '6', wordPinyin: 'Carbon', wordChinese: 'C'},
-  {wordEnglish: '7', wordPinyin: 'Nitrogen', wordChinese: 'N'},
-  {wordEnglish: '8', wordPinyin: 'Oxygen', wordChinese: 'O'},
-  {wordEnglish: '9', wordPinyin: 'Fluorine', wordChinese: 'F'},
-  {wordEnglish: '10', wordPinyin: 'Neon', wordChinese: 'Ne'},
-];
+import {MessageService} from './../message/message.service';
+import {LoginService} from './../login.service';
+import {LanguageService} from './../language.service';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {WordsService} from '../words.service';
+import {FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-words',
@@ -31,24 +12,72 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./words.component.scss']
 })
 export class WordsComponent implements OnInit {
+  words: Word[];
+  selected: Word;
+  searchQuery = '';
+  language: string;
+  pageSort = 'timeCreated';
+  pageSortDirection = 'DESC';
+  pageIndex = 0;
+  pageSize = 10;
+  button: boolean;
+  token: string;
+
   displayedColumns: string[] = ['wordEnglish', 'wordPinyin', 'wordChinese'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource = new MatTableDataSource(this.words);
 
-  value = '';
+  constructor(
+    private languageService: LanguageService,
+    private wordsService: WordsService,
+    private loginService: LoginService,
+    private messageService: MessageService,
+    private formBuilder: FormBuilder) {
+  }
 
-  constructor(private languageService: LanguageService, private loginService: LoginService, private messageService: MessageService) {}
-
-  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
     this.loginService.afAuth.idToken.subscribe((token: string) => {
-      console.log(token);
       this.languageService.getLanguage(token).subscribe((language: string) => {
-        console.log(language);
-      },
-      (err) => {console.error(err);
-      });
+          this.language = language;
+          this.getWords(language, this.pageSize, this.pageIndex, this.pageSort, this.pageSortDirection);
+        },
+        (err) => {
+          this.messageService.messages.concat(err);
+        });
     });
   }
 
+  private getWords(language: string, size: number, page: number, pageSort: string, pageSortDirection: string) {
+    this.loginService.afAuth.idToken.subscribe((token: string) => {
+      this.token = token;
+      this.wordsService.getWordsSearch(
+        token, this.searchQuery, language, pageSort, size, page, pageSortDirection
+      ).subscribe((words: undefined) => {
+          this.words = words;
+          this.dataSource = new MatTableDataSource(this.words);
+        },
+        (err) => {
+          this.messageService.messages.concat(err);
+        });
+    });
+  }
+
+  changePage(event) {
+    this.pageSize = event.pageSize;
+    this.getWords(this.language, event.pageSize, event.pageIndex, this.pageSort, this.pageSortDirection);
+  }
+
+  changeSort(event) {
+    this.pageSort = event.active;
+    this.pageSortDirection = event.direction.toUpperCase();
+    this.paginator.firstPage();
+    this.getWords(this.language, this.pageSize, 0, event.active, event.direction.toUpperCase());
+  }
+
+  search() {
+    this.getWords(this.language, this.pageSize, 0, this.pageSort, this.pageSortDirection);
+  }
 }

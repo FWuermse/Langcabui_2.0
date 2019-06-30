@@ -21,7 +21,7 @@ import {
   MatTabsModule,
   MatInputModule,
   MatTableModule,
-  MatSortModule
+  MatSortModule, MatPaginatorModule,
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { WordsComponent } from './words/words.component';
@@ -29,6 +29,7 @@ import { WordDetailComponent } from './word-detail/word-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MessageComponent } from './message/message.component';
+import { AddComponent } from './add/add.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { MessageComponent } from './message/message.component';
     WordDetailComponent,
     DashboardComponent,
     LoginDialog,
-    MessageComponent
+    MessageComponent,
+    AddComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,8 @@ import { MessageComponent } from './message/message.component';
     AngularFireAuthModule,
     MatTableModule,
     MatSortModule,
-    HttpClientModule
+    HttpClientModule,
+    MatPaginatorModule
   ],
   entryComponents: [LoginDialog],
   providers: [],

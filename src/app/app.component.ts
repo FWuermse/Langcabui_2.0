@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {ErrorStateMatcher, MatDialog, MatDialogRef} from '@angular/material';
-import {FormBuilder, FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import { LoginService } from './login.service';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import {FormBuilder, Validators} from '@angular/forms';
+import {LoginService} from './login.service';
 
 @Component({
   selector: 'app-root',

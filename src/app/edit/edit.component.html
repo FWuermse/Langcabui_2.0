@@ -22,7 +22,7 @@
       <mat-form-field class="form-container col" floatLabel="auto">
         <input matInput placeholder="Language" formControlName="language" required>
       </mat-form-field>
-      <button mat-fab aria-label="back" (click)="add()" color="accent" [disabled]="!word.valid">
+      <button mat-fab aria-label="back" (click)="add()" color="warn" [disabled]="!word.valid">
         <mat-icon>edit</mat-icon>
       </button>
     </div>

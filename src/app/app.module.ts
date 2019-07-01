@@ -21,27 +21,33 @@ import {
   MatTabsModule,
   MatInputModule,
   MatTableModule,
-  MatSortModule, MatPaginatorModule, MatChipsModule,
+  MatSortModule, MatPaginatorModule, MatChipsModule, MatProgressBarModule,
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
-import { WordsComponent } from './words/words.component';
-import { WordDetailComponent } from './word-detail/word-detail.component';
+import {AreYouSureDialog, WordsComponent} from './words/words.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MessageComponent } from './message/message.component';
 import { AddComponent } from './add/add.component';
 import { EditComponent } from './edit/edit.component';
+import { TrainComponent } from './train/train.component';
+import {TrainAllComponent} from './train/train.all.component';
+import {TrainLanguageComponent} from './train/train.language.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WordsComponent,
-    WordDetailComponent,
     DashboardComponent,
-    LoginDialog,
     MessageComponent,
     AddComponent,
-    EditComponent
+    EditComponent,
+    LoginDialog,
+    AreYouSureDialog,
+    TrainComponent,
+    TrainAllComponent,
+    TrainLanguageComponent,
+    TrainLanguageComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,8 +70,9 @@ import { EditComponent } from './edit/edit.component';
     HttpClientModule,
     MatPaginatorModule,
     MatChipsModule,
+    MatProgressBarModule
   ],
-  entryComponents: [LoginDialog],
+  entryComponents: [LoginDialog, AreYouSureDialog],
   providers: [],
   bootstrap: [AppComponent]
 })

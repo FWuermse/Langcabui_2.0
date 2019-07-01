@@ -35,7 +35,7 @@ export class EditComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.loginService.afAuth.idToken.subscribe((token: string) => {
+    this.loginService.getToken().subscribe((token: string) => {
       const id = +this.route.snapshot.paramMap.get('id');
       this.wordsService.getById(token, id).subscribe((word: Word) => {
         this.word = this.fb.group(word);
@@ -51,7 +51,7 @@ export class EditComponent implements OnInit {
   }
 
   add() {
-    this.loginService.afAuth.idToken.subscribe((token: string) => {
+    this.loginService.getToken().subscribe((token: string) => {
       this.wordsService.add(this.word.value, token).subscribe( n => {
         this.location.back();
       });

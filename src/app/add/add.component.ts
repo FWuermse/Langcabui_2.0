@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {LanguageService} from '../language.service';
 import {LoginService} from '../login.service';
-import {MessageService} from '../message/message.service';
+import {Message, MessageService} from '../message/message.service';
 import {Location} from '@angular/common';
 import {WordsService} from '../words.service';
 
@@ -33,13 +33,13 @@ export class AddComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.loginService.afAuth.idToken.subscribe((token: string) => {
+    this.loginService.getToken().subscribe((token: string) => {
       this.languageService.getLanguage(token).subscribe((language: string) => {
           this.language = language;
           this.word.controls['language'].setValue(language);
         },
         (err) => {
-          this.messageService.messages.concat(err);
+          this.messageService.messages.push(new Message('An error occurred: ', `${err.error.message || err.message}`, 'alert-danger'));
         });
     });
   }
@@ -49,9 +49,12 @@ export class AddComponent implements OnInit {
   }
 
   add() {
-    this.loginService.afAuth.idToken.subscribe((token: string) => {
+    this.loginService.getToken().subscribe((token: string) => {
       this.wordsService.add(this.word.value, token).subscribe(n => {
         this.location.back();
+      },
+      (err) => {
+        this.messageService.messages.push(new Message('An error occurred: ', `${err.error.message || err.message}`, 'alert-danger'));
       });
     });
   }

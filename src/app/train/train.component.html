@@ -1,0 +1,46 @@
+<div *ngIf="amount > 0" class="container">
+  <p style="margin-top: 1%">Left for today: {{amount}}</p>
+  <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+
+
+  <div style="margin-top: 1%" class="card {{color}} mb-3">
+    <div class="card-header"><h3 style="text-align: center">{{selectedWord.wordChinese}}</h3></div>
+    <div class="card-body">
+      <div *ngIf="selectedWord.wordPinyin != null && onCheck">
+        <h5 style="text-align: center"><i>{{selectedWord.wordPinyin}}</i></h5>
+        <hr>
+      </div>
+      <mat-icon style="cursor: pointer" color="primary" (click)="enableSuggestion()" aria-hidden="false" aria-label="help icon">help</mat-icon>
+      <mat-icon style="cursor: pointer" color="primary" (click)="revert()" aria-hidden="false" aria-label="swap icon">swap_vertical_circle</mat-icon>
+      <mat-chip-list *ngFor="let ws of wordSuggestions" aria-label="suggestions">
+        <mat-chip>{{getSuggestion(ws)}}</mat-chip>
+      </mat-chip-list>
+      <div *ngIf="!onCheck">
+        <div class="row">
+          <div class="col">
+            <mat-form-field focused="true" class="full-width">
+              <mat-label>Translation here</mat-label>
+              <input matInput type="text" [(ngModel)]="response" (keyup.enter)="submit(response)">
+            </mat-form-field>
+          </div>
+          <button (click)="submit(response)" [disabled]="response === ''" mat-fab color="accent">
+            <mat-icon aria-label="Add" style="color: white">check</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div *ngIf="onCheck">
+        <div class="row">
+          <div class="col">
+            <mat-form-field focused="true" class="full-width">
+              <mat-label>Translation here</mat-label>
+              <input matInput type="text" [(ngModel)]="response" (keyup.enter)="newWord()">
+            </mat-form-field>
+          </div>
+          <button (click)="newWord()" [disabled]="response === ''" mat-fab color="accent">
+            <mat-icon aria-label="Add" style="color: white">check</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-class Word {
+export class Word {
 
   constructor(wordId: number, wordEnglish: string, wordPinyin: string, wordChinese: string, language: string) {
     this.wordId = wordId;

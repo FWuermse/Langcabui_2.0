@@ -6,6 +6,7 @@ import {MessageService} from '../message/message.service';
 import { Location } from '@angular/common';
 import {WordsService} from '../words.service';
 import {ActivatedRoute} from '@angular/router';
+import {Word} from '../words/word';
 
 @Component({
   selector: 'app-edit',

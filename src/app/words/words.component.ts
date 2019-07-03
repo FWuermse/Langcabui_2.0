@@ -4,6 +4,7 @@ import {LanguageService} from './../language.service';
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {WordsService} from '../words.service';
+import {Word} from './word';
 
 @Component({
   selector: 'app-words',
@@ -107,13 +108,7 @@ export class AreYouSureDialog {
     private wordsService: WordsService,
     private messageService: MessageService,
     public dialogRef: MatDialogRef<AreYouSureDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: {
-      wordId: number;
-      wordEnglish: string;
-      wordPinyin: string;
-      wordChinese: string;
-      language: string;
-    }) {
+    @Inject(MAT_DIALOG_DATA) public data: Word) {
   }
 
   onNoClick(): void {

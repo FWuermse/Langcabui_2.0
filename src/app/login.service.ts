@@ -76,7 +76,7 @@ export class LoginService {
         );
       })
       .catch(function (error) {
-        console.log('Error:', error);
+        new Message('An error occurred: ', error, 'alert-danger');
       });
   }
 

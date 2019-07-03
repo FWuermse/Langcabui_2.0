@@ -13,17 +13,17 @@
       <mat-icon style="cursor: pointer" color="primary" (click)="enableSuggestion()" aria-hidden="false" aria-label="help icon">help</mat-icon>
       <mat-icon style="cursor: pointer" color="primary" (click)="revert()" aria-hidden="false" aria-label="swap icon">swap_vertical_circle</mat-icon>
       <mat-chip-list *ngFor="let ws of wordSuggestions" aria-label="suggestions">
-        <mat-chip>{{getSuggestion(ws)}}</mat-chip>
+        <mat-chip>{{ws.wordEnglish}}</mat-chip>
       </mat-chip-list>
       <div *ngIf="!onCheck">
         <div class="row">
           <div class="col">
             <mat-form-field focused="true" class="full-width">
               <mat-label>Translation here</mat-label>
-              <input matInput type="text" [(ngModel)]="response" (keyup.enter)="submit(response)">
+              <input matInput type="text" [(ngModel)]="response" (keyup.enter)="submit()">
             </mat-form-field>
           </div>
-          <button (click)="submit(response)" [disabled]="response === ''" mat-fab color="accent">
+          <button (click)="submit()" [disabled]="response === ''" mat-fab color="accent">
             <mat-icon aria-label="Add" style="color: white">check</mat-icon>
           </button>
         </div>

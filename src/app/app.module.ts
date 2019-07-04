@@ -33,6 +33,7 @@ import { EditComponent } from './edit/edit.component';
 import { TrainComponent } from './train/train.component';
 import {TrainAllComponent} from './train/train.all.component';
 import {TrainLanguageComponent} from './train/train.language.component';
+import { PasswordResetComponent } from './passwordreset/passwordreset.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import {TrainLanguageComponent} from './train/train.language.component';
     TrainAllComponent,
     TrainLanguageComponent,
     TrainLanguageComponent,
+    PasswordResetComponent,
   ],
   imports: [
     BrowserModule,

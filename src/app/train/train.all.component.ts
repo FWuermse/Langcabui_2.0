@@ -107,6 +107,7 @@ export class TrainAllComponent implements OnInit {
   }
 
   newWord() {
+    this.overdueWords = this.shuffle(this.overdueWords);
     this.setFirstWord();
   }
 

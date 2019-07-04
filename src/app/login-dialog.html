@@ -25,6 +25,9 @@
             </button>
             <mat-error *ngIf="signIn.invalid">{{getSignInPasswordMessage()}}</mat-error>
           </mat-form-field>
+          <div class="row">
+            <a (click)="closeDialog()" style="font-size: 80%" routerLink="/account/password/reset">Forgot your password?</a>
+          </div>
         </div>
         <div class="container" align="center" style="margin-top: 10%">
           <button (click)="loginService.signIn(signIn.value); closeDialog()" mat-raised-button [disabled]="signIn.invalid" color="primary">Sign in</button>

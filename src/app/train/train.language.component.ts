@@ -78,20 +78,19 @@ export class TrainLanguageComponent implements OnInit {
   enableSuggestion() {
     this.loginService.getToken().subscribe( (token: string) => {
       this.trainService.getWordSuggestions(token, this.selectedWord.language).subscribe( (words: Word[]) => {
-          this.wordSuggestions = words;
+          this.tipNeeded = true;
+          if (this.reverted) {
+            this.wordSuggestions = this.shuffle(words.filter( (wordSuggestion: Word) =>
+              wordSuggestion.wordChinese !== this.selectedWord.wordChinese).concat(this.selectedWord));
+          } else {
+            this.wordSuggestions = this.shuffle(words.filter( (wordSuggestion: Word) =>
+              wordSuggestion.wordEnglish !== this.selectedWord.wordEnglish).concat(this.selectedWord));
+          }
         },
         (err) => {
           this.messageService.messages.push(new Message('An error occurred: ', `${err.error.message || err.message}`, 'alert-danger'));
         });
     });
-    this.tipNeeded = true;
-    if (this.reverted) {
-      this.wordSuggestions = this.shuffle(this.wordSuggestions.filter( (wordSuggestion: Word) =>
-        wordSuggestion.wordChinese !== this.selectedWord.wordChinese).push(this.selectedWord));
-    } else {
-      this.wordSuggestions = this.shuffle(this.wordSuggestions.filter( (wordSuggestion: Word) =>
-        wordSuggestion.wordEnglish !== this.selectedWord.wordEnglish).push(this.selectedWord));
-    }
   }
 
   submit() {
@@ -106,6 +105,7 @@ export class TrainLanguageComponent implements OnInit {
   }
 
   newWord() {
+    this.overdueWords = this.shuffle(this.overdueWords);
     this.setFirstWord();
   }
 

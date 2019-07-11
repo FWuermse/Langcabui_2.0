@@ -1,10 +1,17 @@
 <mat-drawer-container fullscreen autosize>
   <mat-drawer #drawer mode="push">
     <mat-nav-list>
-      <mat-list-item (click)="drawer.toggle()" routerLink="/dashboard"><mat-icon color="primary">dashboard</mat-icon> Dashboard </mat-list-item>
-      <mat-list-item (click)="drawer.toggle()" routerLink="/words"><mat-icon color="primary">list</mat-icon> Words </mat-list-item>
-      <mat-list-item (click)="drawer.toggle()" routerLink="/train"><mat-icon color="primary">spellcheck</mat-icon> Train </mat-list-item>
-      <mat-list-item (click)="drawer.toggle()"><mat-icon color="primary">language</mat-icon> Languages </mat-list-item>
+      <mat-list-item (click)="drawer.toggle()" routerLink="/home"><mat-icon matListIcon color="primary">home</mat-icon> Home </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item (click)="drawer.toggle()" routerLink="/words"><mat-icon matListIcon color="primary">list</mat-icon> Words </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item (click)="drawer.toggle()" routerLink="/train"><mat-icon matListIcon color="primary">spellcheck</mat-icon> Train </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item (click)="drawer.toggle()" routerLink="/add"><mat-icon matListIcon color="primary">add</mat-icon> Add </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item (click)="drawer.toggle()" routerLink="/languages"><mat-icon matListIcon color="primary">language</mat-icon> Languages </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item (click)="drawer.toggle()" routerLink="/dashboard"><mat-icon matListIcon color="primary">dashboard</mat-icon> Dashboard </mat-list-item>
     </mat-nav-list>
   </mat-drawer>
   <mat-drawer-content>

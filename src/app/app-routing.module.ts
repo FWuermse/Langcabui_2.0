@@ -6,6 +6,8 @@ import {AddComponent} from './add/add.component';
 import {EditComponent} from './edit/edit.component';
 import {TrainComponent} from './train/train.component';
 import {PasswordResetComponent} from './passwordreset/passwordreset.component';
+import {HomeComponent} from './home/home.component';
+import {LanguagesComponent} from './languages/languages.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -14,7 +16,9 @@ const routes: Routes = [
   { path: 'add', component: AddComponent },
   { path: 'edit/:id', component: EditComponent },
   { path: 'train', component: TrainComponent},
-  { path: 'account/password/reset', component: PasswordResetComponent}
+  { path: 'account/password/reset', component: PasswordResetComponent},
+  { path: 'home', component: HomeComponent},
+  { path: 'languages', component: LanguagesComponent}
 ];
 
 @NgModule({

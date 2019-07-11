@@ -21,7 +21,7 @@ import {
   MatTabsModule,
   MatInputModule,
   MatTableModule,
-  MatSortModule, MatPaginatorModule, MatChipsModule, MatProgressBarModule,
+  MatSortModule, MatPaginatorModule, MatChipsModule, MatProgressBarModule, MatDividerModule,
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import {AreYouSureDialog, WordsComponent} from './words/words.component';
@@ -34,6 +34,8 @@ import { TrainComponent } from './train/train.component';
 import {TrainAllComponent} from './train/train.all.component';
 import {TrainLanguageComponent} from './train/train.language.component';
 import { PasswordResetComponent } from './passwordreset/passwordreset.component';
+import { HomeComponent } from './home/home.component';
+import { LanguagesComponent } from './languages/languages.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { PasswordResetComponent } from './passwordreset/passwordreset.component'
     TrainLanguageComponent,
     TrainLanguageComponent,
     PasswordResetComponent,
+    HomeComponent,
+    LanguagesComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +76,8 @@ import { PasswordResetComponent } from './passwordreset/passwordreset.component'
     HttpClientModule,
     MatPaginatorModule,
     MatChipsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDividerModule
   ],
   entryComponents: [LoginDialog, AreYouSureDialog],
   providers: [],

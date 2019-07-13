@@ -77,9 +77,7 @@ export class TrainService {
     }
   }
 
-  afterTrain(wordId: number, difficulty: any) {
-    console.log(`WordId: ${wordId},\nDifficulty: ${difficulty}`);
-  }
+  afterTrain(wordId: number, difficulty: any) { }
 
   calculateProgress(maxAmount: number, amount: number): number {
   if (amount === 0) {

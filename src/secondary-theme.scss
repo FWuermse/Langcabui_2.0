@@ -1,0 +1,5 @@
+@import '~@angular/material/theming';
+$primary-colour: mat-palette($mat-teal);
+$accent-colour:  mat-palette($mat-cyan);
+$warn-colour:    mat-palette($mat-pink);
+$secondary-theme: mat-light-theme($primary-colour, $accent-colour, $warn-colour);

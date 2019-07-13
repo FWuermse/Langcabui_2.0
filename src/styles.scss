@@ -1,0 +1,19 @@
+@import 'primary-theme.scss';
+@import 'secondary-theme.scss';
+@import 'tertiary-theme.scss';
+@import '~@angular/material/theming';
+@include mat-core();
+.primary-theme {
+  @include angular-material-theme($primary-theme);
+}
+.secondary-theme {
+  @include angular-material-theme($secondary-theme);
+}
+.tertiary-theme {
+  @include angular-material-theme($tertiary-theme);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}

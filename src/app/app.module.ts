@@ -21,7 +21,7 @@ import {
   MatTabsModule,
   MatInputModule,
   MatTableModule,
-  MatSortModule, MatPaginatorModule, MatChipsModule, MatProgressBarModule, MatDividerModule,
+  MatSortModule, MatPaginatorModule, MatChipsModule, MatProgressBarModule, MatDividerModule, MatRippleModule, MatCard, MatCardModule,
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import {AreYouSureDialog, WordsComponent} from './words/words.component';
@@ -77,7 +77,9 @@ import { LanguagesComponent } from './languages/languages.component';
     MatPaginatorModule,
     MatChipsModule,
     MatProgressBarModule,
-    MatDividerModule
+    MatDividerModule,
+    MatRippleModule,
+    MatCardModule
   ],
   entryComponents: [LoginDialog, AreYouSureDialog],
   providers: [],

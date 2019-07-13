@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {FormBuilder, Validators} from '@angular/forms';
 import {LoginService} from './login.service';
@@ -8,13 +8,17 @@ import {LoginService} from './login.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   constructor(public dialog: MatDialog) {
   }
 
   openDialog(): void {
     this.dialog.open(LoginDialog);
+  }
+
+  ngOnInit(): void {
+    document.body.classList.add("primary-theme", "mat-app-background");
   }
 }
 

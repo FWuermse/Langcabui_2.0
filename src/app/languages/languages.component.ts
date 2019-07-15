@@ -10,7 +10,7 @@ import {LanguageService} from '../language.service';
   styleUrls: ['./languages.component.scss']
 })
 export class LanguagesComponent implements OnInit {
-  languages = [];
+  languages: string[];
   currentLanguage: string;
 
   constructor(private messageService: MessageService, private loginService: LoginService, private languageService: LanguageService, private location: Location) {

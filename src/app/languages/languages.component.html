@@ -1,5 +1,6 @@
 <div class="container" align="center">
   <h1>Languages</h1>
+  <mat-spinner [diameter]="40" *ngIf="!languages"></mat-spinner>
   <button *ngFor="let language of languages" mat-raised-button (click)="changeLanguage(language)" [disabled]="currentLanguage === language" style="margin: 10px; height: 50px;">
     <h3>{{language}}</h3>
   </button>

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {FormBuilder, Validators} from '@angular/forms';
-import {LoginService} from './login.service';
+import {LoginService} from './login/login.service';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
 
 @Component({
   selector: 'login-dialog',
-  templateUrl: 'login-dialog.html'
+  templateUrl: 'login/login-dialog.html'
 })
 export class LoginDialog {
   hide = true;

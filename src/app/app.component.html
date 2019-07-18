@@ -19,9 +19,9 @@
       <button (click)="drawer.toggle()" mat-icon-button>
         <mat-icon>menu</mat-icon>
       </button>
-      <span>Langcab</span>
+      <span routerLink="/home" style="cursor: pointer" matTooltip="Home page">Langcab</span>
       <span class="example-spacer"></span>
-      <button (click)="openDialog()" mat-icon-button><mat-icon class="example-icon">person</mat-icon></button>
+      <button (click)="openDialog()" mat-icon-button matTooltip="Profile"><mat-icon class="example-icon">person</mat-icon></button>
     </mat-toolbar>
     <app-message></app-message>
     <router-outlet></router-outlet>

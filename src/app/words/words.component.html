@@ -10,7 +10,7 @@
       </mat-form-field>
     </div>
     <div class="col-3">
-      <button mat-fab color="primary" style="margin-top: 9%" routerLink="/add">
+      <button mat-fab color="primary" style="margin-top: 9%" routerLink="/add" matTooltip="Add a new word">
         <mat-icon aria-label="Add">add</mat-icon>
       </button>
     </div>
@@ -20,20 +20,20 @@
     <table mat-table [dataSource]="dataSource" matSort (matSortChange)="changeSort($event)">
       <ng-container matColumnDef="wordEnglish">
         <th mat-header-cell *matHeaderCellDef mat-sort-header="wordEnglish"> Original </th>
-        <td mat-cell *matCellDef="let word" routerLink="/edit/{{word.wordId}}"> {{word.wordEnglish}} </td>
+        <td mat-cell *matCellDef="let word" routerLink="/edit/{{word.wordId}}" style="cursor: pointer"> {{word.wordEnglish}} </td>
       </ng-container>
       <ng-container matColumnDef="wordPinyin">
         <th mat-header-cell *matHeaderCellDef mat-sort-header="wordPinyin"> Pronunciation </th>
-        <td mat-cell *matCellDef="let word" routerLink="/edit/{{word.wordId}}"> {{word.wordPinyin}} </td>
+        <td mat-cell *matCellDef="let word" routerLink="/edit/{{word.wordId}}" style="cursor: pointer"> {{word.wordPinyin}} </td>
       </ng-container>
       <ng-container matColumnDef="wordChinese">
         <th mat-header-cell *matHeaderCellDef mat-sort-header="wordChinese"> {{language}} </th>
-        <td mat-cell *matCellDef="let word" routerLink="/edit/{{word.wordId}}"> {{word.wordChinese}} </td>
+        <td mat-cell *matCellDef="let word" routerLink="/edit/{{word.wordId}}" style="cursor: pointer"> {{word.wordChinese}} </td>
       </ng-container>
       <ng-container matColumnDef="wordId">
         <th mat-header-cell *matHeaderCellDef style="width: 1%"></th>
         <td mat-cell *matCellDef="let word">
-          <button mat-button matSuffix mat-icon-button aria-label="Delete" (click)="delete(word)">
+          <button mat-button matSuffix mat-icon-button aria-label="Delete" (click)="delete(word)" matTooltip="Delete this word">
             <mat-icon color="warn">delete_forever</mat-icon>
           </button>
         </td>

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Message, MessageService} from '../message/message.service';
-import {LoginService} from '../login.service';
+import {LoginService} from '../login/login.service';
 import {Location} from '@angular/common';
-import {LanguageService} from '../language.service';
+import {LanguageService} from './language.service';
 
 @Component({
   selector: 'app-languages',

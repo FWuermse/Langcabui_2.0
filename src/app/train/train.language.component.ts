@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {LanguageService} from '../language.service';
-import {LoginService} from '../login.service';
-import {TrainService} from '../train.service';
+import {LanguageService} from '../languages/language.service';
+import {LoginService} from '../login/login.service';
+import {TrainService} from './train.service';
 import {Message, MessageService} from '../message/message.service';
 import {Word} from '../words/word';
 import {__await} from 'tslib';

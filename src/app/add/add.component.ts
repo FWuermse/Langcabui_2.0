@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import {LanguageService} from '../language.service';
-import {LoginService} from '../login.service';
+import {LanguageService} from '../languages/language.service';
+import {LoginService} from '../login/login.service';
 import {Message, MessageService} from '../message/message.service';
 import {Location} from '@angular/common';
-import {WordsService} from '../words.service';
+import {WordsService} from '../words/words.service';
 
 @Component({
   selector: 'app-add',

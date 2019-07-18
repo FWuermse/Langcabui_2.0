@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import * as levenshtein from 'fast-levenshtein';
-import {Word} from './words/word';
+import {Word} from '../words/word';
 
 @Injectable({
   providedIn: 'root'

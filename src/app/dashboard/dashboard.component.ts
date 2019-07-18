@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Message, MessageService} from '../message/message.service';
-import {LanguageService} from '../language.service';
-import {FullPageable, FullWord, WordsService} from '../words.service';
-import {LoginService} from '../login.service';
+import {LanguageService} from '../languages/language.service';
+import {FullPageable, FullWord, WordsService} from '../words/words.service';
+import {LoginService} from '../login/login.service';
 import {applySourceSpanToExpressionIfNeeded} from '@angular/compiler/src/output/output_ast';
 
 class WordsDay {

@@ -29,7 +29,7 @@ import {
   MatRippleModule,
   MatCard,
   MatCardModule,
-  MatGridListModule, MatProgressSpinnerModule,
+  MatGridListModule, MatProgressSpinnerModule, MatTooltipModule,
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import {AreYouSureDialog, WordsComponent} from './words/words.component';
@@ -92,7 +92,8 @@ import {TermsComponent} from './termsandprivacy/terms.component';
     MatDividerModule,
     MatRippleModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTooltipModule
   ],
   entryComponents: [LoginDialog, AreYouSureDialog],
   providers: [],

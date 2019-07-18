@@ -1,9 +1,9 @@
 import {Message, MessageService} from './../message/message.service';
-import {LoginService} from './../login.service';
-import {LanguageService} from './../language.service';
+import {LoginService} from '../login/login.service';
+import {LanguageService} from '../languages/language.service';
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {WordsService} from '../words.service';
+import {WordsService} from './words.service';
 import {Word} from './word';
 
 @Component({

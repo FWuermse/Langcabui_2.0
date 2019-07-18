@@ -1,4 +1,4 @@
-import {Message, MessageService} from './message/message.service';
+import {Message, MessageService} from '../message/message.service';
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {auth} from 'firebase/app';

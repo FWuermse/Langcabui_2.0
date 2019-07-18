@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {LanguageService} from '../language.service';
+import {LanguageService} from '../languages/language.service';
 import {Message, MessageService} from '../message/message.service';
-import {LoginService} from '../login.service';
+import {LoginService} from '../login/login.service';
 
 @Component({
   selector: 'app-train',

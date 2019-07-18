@@ -8,9 +8,9 @@
         <h5 style="text-align: center"><i>{{selectedWord.wordPinyin}}</i></h5>
         <hr>
       </div>
-      <mat-icon style="cursor: pointer" color="primary" (click)="enableSuggestion()" aria-hidden="false" aria-label="help icon">help</mat-icon>
-      <mat-icon style="cursor: pointer" color="primary" (click)="revert()" aria-hidden="false" aria-label="swap icon">swap_vertical_circle</mat-icon>
-      <mat-icon style="cursor: pointer" color="primary" (click)="newWord()" aria-hidden="false" aria-label="skip">skip_next</mat-icon>
+      <mat-icon style="cursor: pointer" color="primary" (click)="enableSuggestion()" aria-hidden="false" aria-label="help icon" matTooltip="Display a tip">help</mat-icon>
+      <mat-icon style="cursor: pointer" color="primary" (click)="revert()" aria-hidden="false" aria-label="swap icon" matTooltip="Revert words">swap_vertical_circle</mat-icon>
+      <mat-icon style="cursor: pointer" color="primary" (click)="newWord()" aria-hidden="false" aria-label="skip" matTooltip="Skip this word">skip_next</mat-icon>
       <mat-chip-list aria-label="suggestions">
         <div *ngFor="let ws of wordSuggestions">
           <mat-chip style="cursor: pointer" *ngIf="reverted" (click)="response = ws.wordChinese">{{ws.wordChinese}}</mat-chip>

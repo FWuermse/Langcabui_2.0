@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import * as levenshtein from 'fast-levenshtein';
 import {Word} from './words/word';
 
@@ -70,14 +70,22 @@ export class TrainService {
   }
 
   setColour(difficulty: any) {
-    if (difficulty <= 1) {
+    if (difficulty <= 2) {
       return 'text-white bg-danger';
     } else {
       return 'text-white bg-success';
     }
   }
 
-  afterTrain(wordId: number, difficulty: any) { }
+  afterTrain(word: Word, difficulty: number, token: string) {
+    if (!word.tags.find( (tag: string) => tag === 'repeat')) {
+      return this.http.post(`${this.url}/`, {
+          id: word.wordId, di: difficulty
+        }, {
+        headers: {'Authorization': `${token}`}
+      }).subscribe();
+    }
+  }
 
   calculateProgress(maxAmount: number, amount: number): number {
   if (amount === 0) {
@@ -86,7 +94,7 @@ export class TrainService {
     const wordsDone = maxAmount - amount;
     const average = wordsDone / maxAmount;
     const percent = average * 100;
-    return +Math.round(percent).toFixed();
+    return + Math.round(percent).toFixed();
   }
 }
 }

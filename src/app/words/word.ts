@@ -13,4 +13,5 @@ export class Word {
   wordPinyin: string;
   wordChinese: string;
   language: string;
+  tags: string[];
 }

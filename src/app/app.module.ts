@@ -44,6 +44,8 @@ import {TrainLanguageComponent} from './train/train.language.component';
 import { PasswordResetComponent } from './passwordreset/passwordreset.component';
 import { HomeComponent } from './home/home.component';
 import { LanguagesComponent } from './languages/languages.component';
+import { PrivacyComponent } from './termsandprivacy/privacy.component';
+import {TermsComponent} from './termsandprivacy/terms.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { LanguagesComponent } from './languages/languages.component';
     PasswordResetComponent,
     HomeComponent,
     LanguagesComponent,
+    PrivacyComponent,
+    TermsComponent
   ],
   imports: [
     BrowserModule,

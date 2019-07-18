@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {LanguageService} from '../language.service';
 import {LoginService} from '../login.service';
 import {TrainService} from '../train.service';
 import {Message, MessageService} from '../message/message.service';
 import {Word} from '../words/word';
+import {__await} from 'tslib';
 
 @Component({
   selector: 'app-train-all',
@@ -11,9 +12,8 @@ import {Word} from '../words/word';
   styleUrls: ['./train.component.scss']
 })
 export class TrainAllComponent implements OnInit {
-  overdueWords: Word[];
+  overdueWords: Word[] = [];
   wordSuggestions: Word[];
-  amount = 0;
   maxAmount = 0;
   progress = 0;
   selectedWord: Word;
@@ -28,19 +28,20 @@ export class TrainAllComponent implements OnInit {
     private languageService: LanguageService,
     private trainService: TrainService,
     private messageService: MessageService
-  ) { }
+  ) {
+  }
 
   private wordRevert(word: Word) {
     return new Word(word.wordId, word.wordChinese, word.wordPinyin, word.wordEnglish, word.language);
   }
 
   ngOnInit() {
-    this.loginService.getToken().subscribe( (token: string) => {
-          this.trainService.getAllOverdueWords(token).subscribe( (words: Word[]) => {
-            this.maxAmount = words.length;
-            this.overdueWords = this.shuffle(words);
-            this.setFirstWord();
-          },
+    this.loginService.getToken().subscribe((token: string) => {
+      this.trainService.getAllOverdueWords(token).subscribe((words: Word[]) => {
+          this.maxAmount = words.length;
+          this.overdueWords = this.shuffle(words);
+          this.setFirstWord();
+        },
         (err) => {
           this.messageService.messages.push(new Message('An error occurred: ', `${err.error.message || err.message}`, 'alert-danger'));
         });
@@ -65,45 +66,45 @@ export class TrainAllComponent implements OnInit {
     this.response = '';
     this.tipNeeded = false;
     this.wordSuggestions = [];
-    if (this.overdueWords.length > 0) {
-      this.amount = this.overdueWords.length;
-      if (!this.reverted) {
-        this.selectedWord = this.overdueWords[this.overdueWords.length - 1];
-      } else {
-        this.selectedWord = this.wordRevert(this.overdueWords[this.overdueWords.length - 1]);
-      }
+    if (!this.reverted) {
+      this.selectedWord = this.overdueWords[this.overdueWords.length - 1];
     } else {
-      this.amount = 0;
+      this.selectedWord = this.wordRevert(this.overdueWords[this.overdueWords.length - 1]);
     }
   }
 
   enableSuggestion() {
-    this.loginService.getToken().subscribe( (token: string) => {
-      this.trainService.getWordSuggestions(token, this.selectedWord.language).subscribe( (words: Word[]) => {
-        this.wordSuggestions = words;
-      },
+    this.loginService.getToken().subscribe((token: string) => {
+      this.trainService.getWordSuggestions(token, this.selectedWord.language).subscribe((words: Word[]) => {
+          this.tipNeeded = true;
+          if (this.reverted) {
+            this.wordSuggestions = this.shuffle(words.filter((wordSuggestion: Word) =>
+              wordSuggestion.wordChinese !== this.selectedWord.wordChinese).concat(this.selectedWord));
+          } else {
+            this.wordSuggestions = this.shuffle(words.filter((wordSuggestion: Word) =>
+              wordSuggestion.wordEnglish !== this.selectedWord.wordEnglish).concat(this.selectedWord));
+          }
+        },
         (err) => {
           this.messageService.messages.push(new Message('An error occurred: ', `${err.error.message || err.message}`, 'alert-danger'));
         });
     });
-    this.tipNeeded = true;
-    if (this.reverted) {
-      this.wordSuggestions = this.shuffle(this.wordSuggestions.filter( (wordSuggestion: Word) =>
-        wordSuggestion.wordChinese !== this.selectedWord.wordChinese).push(this.selectedWord));
-    } else {
-      this.wordSuggestions = this.shuffle(this.wordSuggestions.filter( (wordSuggestion: Word) =>
-        wordSuggestion.wordEnglish !== this.selectedWord.wordEnglish).push(this.selectedWord));
-    }
   }
 
   submit() {
     const difficulty = this.trainService.check(this.response, this.selectedWord, this.tipNeeded);
     this.response = this.selectedWord.wordEnglish;
-    this.trainService.afterTrain(this.selectedWord.wordId, difficulty);
-    this.overdueWords.pop();
-    this.color = this.trainService.setColour(difficulty);
-    this.onCheck = true;
-    this.progress = this.trainService.calculateProgress(this.maxAmount, this.amount);
+    this.loginService.getToken().subscribe((token: string) => {
+      __await(this.trainService.afterTrain(this.selectedWord, difficulty, token));
+      if (difficulty <= 2) {
+        this.selectedWord.tags.push('repeat');
+      } else {
+        this.overdueWords.pop();
+      }
+      this.color = this.trainService.setColour(difficulty);
+      this.onCheck = true;
+      this.progress = this.trainService.calculateProgress(this.maxAmount, this.overdueWords.length);
+    });
   }
 
   newWord() {

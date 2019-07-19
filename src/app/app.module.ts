@@ -27,9 +27,8 @@ import {
   MatProgressBarModule,
   MatDividerModule,
   MatRippleModule,
-  MatCard,
   MatCardModule,
-  MatGridListModule, MatProgressSpinnerModule, MatTooltipModule,
+  MatProgressSpinnerModule, MatTooltipModule,
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import {AreYouSureDialog, WordsComponent} from './words/words.component';

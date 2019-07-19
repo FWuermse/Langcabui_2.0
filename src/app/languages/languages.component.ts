@@ -13,7 +13,11 @@ export class LanguagesComponent implements OnInit {
   languages: string[];
   currentLanguage: string;
 
-  constructor(private messageService: MessageService, private loginService: LoginService, private languageService: LanguageService, private location: Location) {
+  constructor(
+    private messageService: MessageService,
+    private loginService: LoginService,
+    private languageService: LanguageService,
+    private location: Location) {
   }
 
   ngOnInit() {

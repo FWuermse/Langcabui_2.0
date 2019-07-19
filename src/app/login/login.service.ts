@@ -38,7 +38,7 @@ export class LoginService {
   }
 
   twitterLogin() {
-    __await(this.afAuth.auth.signInWithPopup(new auth.TwitterAuthProvider()).then((user => {
+    __await(this.afAuth.auth.signInWithPopup(new auth.TwitterAuthProvider()).then((() => {
       this.messageService.messages.push(new Message('Success: ', 'You successfully logged in via Twitter!', 'alert-success'));
     })));
   }
@@ -76,18 +76,18 @@ export class LoginService {
         );
       })
       .catch(function (error) {
-        new Message('An error occurred: ', error, 'alert-danger');
+        console.error(error);
       });
   }
 
   resetPassword(email: string) {
-    this.afAuth.auth.sendPasswordResetEmail(email).then( n => {
+    this.afAuth.auth.sendPasswordResetEmail(email).then( () => {
       this.messageService.messages.push(new Message('Success! ', `A password reset link has been sent to: ${email}`, 'alert-success'));
     });
   }
 
   logout() {
-    (this.afAuth.auth.signOut().then( n => {
+    (this.afAuth.auth.signOut().then( () => {
       this.messageService.messages.push(
         new Message('Success: ', 'You are logged out', 'alert-success'));
     }));

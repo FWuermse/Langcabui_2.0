@@ -5,22 +5,30 @@
   <form [formGroup]="word">
     <div class="form-group">
       <mat-form-field class="form-container" floatLabel="auto">
-        <input matInput placeholder="Your word" formControlName="wordEnglish" required>
+        <label>
+          <input matInput placeholder="Your word" formControlName="wordEnglish" required>
+        </label>
       </mat-form-field>
     </div>
     <div class="form-group">
       <mat-form-field class="form-container" floatLabel="auto">
-        <input matInput placeholder="Translation {{language}}" formControlName="wordChinese" required>
+        <label>
+          <input matInput placeholder="Translation {{language}}" formControlName="wordChinese" required>
+        </label>
       </mat-form-field>
     </div>
     <div class="form-group">
       <mat-form-field class="form-container" floatLabel="auto">
-        <input matInput placeholder="Pronunciation (optional)" formControlName="wordPinyin">
+        <label>
+          <input matInput placeholder="Pronunciation (optional)" formControlName="wordPinyin">
+        </label>
       </mat-form-field>
     </div>
     <div class="form-group row">
       <mat-form-field class="form-container col" floatLabel="auto">
-        <input matInput placeholder="Language" formControlName="language" required>
+        <label>
+          <input matInput placeholder="Language" formControlName="language" required>
+        </label>
       </mat-form-field>
       <button mat-fab aria-label="back" (click)="add()" color="accent" [disabled]="!word.valid" matTooltip="Create word">
         <mat-icon style="color: white">check</mat-icon>

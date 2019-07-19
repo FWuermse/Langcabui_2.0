@@ -50,7 +50,7 @@ export class AddComponent implements OnInit {
 
   add() {
     this.loginService.getToken().subscribe((token: string) => {
-      this.wordsService.add(this.word.value, token).subscribe(n => {
+      this.wordsService.add(this.word.value, token).subscribe(() => {
         this.location.back();
       },
       (err) => {

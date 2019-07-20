@@ -1,11 +1,7 @@
-<ng-adsense
-  [adClient]="'ca-pub-7364276574790830'"
-  [adSlot]="9344305724"
-></ng-adsense>
 <div class="container">
   <div class="row">
     <div class="col-9">
-      <mat-form-field focused="true" appearance="outline" class="almost-full-width">
+      <mat-form-field focused appearance="outline" class="almost-full-width">
         <mat-label>Search</mat-label>
         <input matInput type="text" [(ngModel)]="searchQuery" (ngModelChange)="search()">
         <button mat-button *ngIf="searchQuery" matSuffix mat-icon-button aria-label="Clear" (click)="searchQuery=''; search()">
@@ -19,6 +15,11 @@
       </button>
     </div>
   </div>
+
+  <ng-adsense
+    [adClient]="'ca-pub-7364276574790830'"
+    [adSlot]="9344305724"
+  ></ng-adsense>
 
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort (matSortChange)="changeSort($event)">

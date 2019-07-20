@@ -45,7 +45,7 @@ export class WordsComponent implements OnInit {
           this.getWords(language, this.pageSize, this.pageIndex, this.pageSort, this.pageSortDirection);
         });
     }, (err) => {
-      this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'], 'alert-danger'));
+      this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'] + '. Are you logged in?', 'alert-danger'));
     });
   }
 
@@ -59,7 +59,7 @@ export class WordsComponent implements OnInit {
           this.dataSource = new MatTableDataSource(this.words);
         },
         (err) => {
-          this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'], 'alert-danger'));
+          this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'] + '. Are you logged in?', 'alert-danger'));
         });
     });
   }

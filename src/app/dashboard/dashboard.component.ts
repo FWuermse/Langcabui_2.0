@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit {
       this.days = Math.ceil(diff / (1000 * 3600 * 24) + 1);
       this.setDifficultWords(token, language);
     }, (err) => {
-      this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'], 'alert-danger'));
+      this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'] + '. Are you logged in?', 'alert-danger'));
     });
   }
 
@@ -69,7 +69,7 @@ export class DashboardComponent implements OnInit {
             [this.difficultWords].timePractice).getTime() - new Date().getTime()) / (1000 * 3600 * 24));
       this.setWordsAddedPerDay(pageable);
     }, (err) => {
-      this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'], 'alert-danger'));
+      this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'] + '. Are you logged in?', 'alert-danger'));
     });
   }
 

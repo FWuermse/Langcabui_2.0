@@ -38,7 +38,7 @@ export class TrainRandomComponent implements OnInit {
                 this.trainService.setFirstWord();
               });
           }, (err) => {
-            this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'], 'alert-danger'));
+            this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'] + '. Are you logged in?', 'alert-danger'));
           });
         });
       });
@@ -91,7 +91,7 @@ export class TrainRandomComponent implements OnInit {
                       }
                     });
                 }, (err) => {
-                  this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'], 'alert-danger'));
+                  this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'] + '. Are you logged in?', 'alert-danger'));
                 });
             });
         });

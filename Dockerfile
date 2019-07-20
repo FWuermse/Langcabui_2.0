@@ -3,7 +3,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install && npm audit fix
 COPY . .
-RUN npm install -g @angular/cli && ng build --prod
+RUN npm run build -- --prod
 
 FROM nginx:alpine
 COPY --from=build /usr/src/app/dist/* /usr/share/nginx/html/

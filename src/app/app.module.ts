@@ -46,6 +46,7 @@ import { LanguagesComponent } from './languages/languages.component';
 import { PrivacyComponent } from './termsandprivacy/privacy.component';
 import {TermsComponent} from './termsandprivacy/terms.component';
 import {TrainRandomComponent} from './train/train.random.component';
+import {AdsenseModule} from 'ng2-adsense';
 
 @NgModule({
   declarations: [
@@ -84,6 +85,10 @@ import {TrainRandomComponent} from './train/train.random.component';
     MatInputModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AdsenseModule.forRoot({
+      adClient: 'ca-pub-7364276574790830',
+      adSlot: 9344305724,
+    }),
     MatTableModule,
     MatSortModule,
     HttpClientModule,

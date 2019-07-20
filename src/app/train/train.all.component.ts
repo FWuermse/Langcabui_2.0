@@ -15,7 +15,7 @@ export class TrainAllComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private languageService: LanguageService,
-    private trainService: TrainService,
+    public trainService: TrainService,
     private messageService: MessageService
   ) {
   }

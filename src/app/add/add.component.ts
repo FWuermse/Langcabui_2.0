@@ -14,7 +14,7 @@ import {WordsService} from '../words/words.service';
 export class AddComponent implements OnInit {
 
   constructor(
-    private wordsService: WordsService,
+    public wordsService: WordsService,
     private languageService: LanguageService,
     private loginService: LoginService,
     private messageService: MessageService,

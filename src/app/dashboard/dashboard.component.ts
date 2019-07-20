@@ -27,7 +27,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private languageService: LanguageService,
-    private wordsService: WordsService,
+    public wordsService: WordsService,
     private loginService: LoginService,
     private messageService: MessageService) {
   }

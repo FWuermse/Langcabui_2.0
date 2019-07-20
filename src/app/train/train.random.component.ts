@@ -17,9 +17,9 @@ export class TrainRandomComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     private languageService: LanguageService,
-    private trainService: TrainService,
+    public trainService: TrainService,
     private messageService: MessageService,
-    private wordsService: WordsService
+    public wordsService: WordsService
   ) {
   }
 

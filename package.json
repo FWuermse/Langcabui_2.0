@@ -1,5 +1,5 @@
 {
-  "name": "untitled",
+  "name": "langcab",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -27,6 +27,7 @@
     "fast-levenshtein": "^2.0.6",
     "firebase": "^5.8.6",
     "hammerjs": "^2.0.8",
+    "ng2-adsense": "^6.0.0",
     "ngx-infinite-scroll": "^7.2.0",
     "rxjs": "~6.5.2",
     "tslib": "^1.9.0",

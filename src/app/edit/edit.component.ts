@@ -17,7 +17,7 @@ export class EditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private wordsService: WordsService,
+    public wordsService: WordsService,
     private languageService: LanguageService,
     private loginService: LoginService,
     private messageService: MessageService,

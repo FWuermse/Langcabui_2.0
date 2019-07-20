@@ -2,7 +2,7 @@ FROM node:alpine AS build
 WORKDIR /app
 COPY . .
 RUN npm install && \
-    npm run build
+    ng build --prod
 
 FROM nginx:alpine
 COPY --from=build /app/dist/* /usr/share/nginx/html/

@@ -28,7 +28,7 @@ export class WordsComponent implements OnInit {
 
   constructor(
     private languageService: LanguageService,
-    private wordsService: WordsService,
+    public wordsService: WordsService,
     private loginService: LoginService,
     private messageService: MessageService,
     public dialog: MatDialog) {
@@ -106,7 +106,7 @@ export class AreYouSureDialog {
 
   constructor(
     private loginService: LoginService,
-    private wordsService: WordsService,
+    public wordsService: WordsService,
     private messageService: MessageService,
     public dialogRef: MatDialogRef<AreYouSureDialog>,
     @Inject(MAT_DIALOG_DATA) public data: Word) {

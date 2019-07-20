@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {LanguageService} from '../languages/language.service';
 import {LoginService} from '../login/login.service';
-import {MessageService} from '../message/message.service';
+import {Message, MessageService} from '../message/message.service';
 import { Location } from '@angular/common';
 import {WordsService} from '../words/words.service';
 import {ActivatedRoute} from '@angular/router';
@@ -42,7 +42,7 @@ export class EditComponent implements OnInit {
         this.word = this.fb.group(word);
       },
       (err) => {
-        this.messageService.messages.concat(err);
+        this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'], 'alert-danger'));
       });
     });
   }
@@ -55,6 +55,8 @@ export class EditComponent implements OnInit {
     this.loginService.getToken().subscribe((token: string) => {
       this.wordsService.add(this.word.value, token).subscribe( () => {
         this.location.back();
+      }, (err) => {
+        this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'], 'alert-danger'));
       });
     });
   }

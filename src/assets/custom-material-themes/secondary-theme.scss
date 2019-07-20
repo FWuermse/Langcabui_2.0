@@ -1,4 +1,4 @@
-@import '~@angular/material/theming';
+@import '../../../node_modules/@angular/material/theming';
 $primary-colour: mat-palette($mat-teal);
 $accent-colour:  mat-palette($mat-cyan);
 $warn-colour:    mat-palette($mat-pink);

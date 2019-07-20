@@ -10,6 +10,7 @@ import {HomeComponent} from './home/home.component';
 import {LanguagesComponent} from './languages/languages.component';
 import {PrivacyComponent} from './termsandprivacy/privacy.component';
 import {TermsComponent} from './termsandprivacy/terms.component';
+import {TrainRandomComponent} from './train/train.random.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -22,7 +23,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'languages', component: LanguagesComponent},
   { path: 'privacy', component: PrivacyComponent},
-  { path: 'terms', component: TermsComponent}
+  { path: 'terms', component: TermsComponent},
+  { path: 'train/random', component: TrainRandomComponent}
 ];
 
 @NgModule({

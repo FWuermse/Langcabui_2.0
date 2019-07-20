@@ -21,6 +21,20 @@
       </button>
       <span routerLink="/home" style="cursor: pointer" matTooltip="Home page">Langcab</span>
       <span class="example-spacer"></span>
+<!--      <mat-form-field *ngIf="keyboardService.showKeyboards">-->
+<!--        <mat-select [(value)]="keyboardService.selectedKeyboard">-->
+<!--          <mat-option value="zh-t-i0-pinyin">Pinyin</mat-option>-->
+<!--          <mat-option value="ru-t-i0-und">Cyrillic</mat-option>-->
+<!--          <mat-option value="hi-t-i0-und">Hindi</mat-option>-->
+<!--          <mat-option value="ar-t-i0-und">Arabic</mat-option>-->
+<!--        </mat-select>-->
+<!--      </mat-form-field>-->
+<!--      <button class="example-icon" mat-icon-button matTooltip="Other keyboard input" *ngIf="!keyboardService.showKeyboards" (click)="keyboardService.showKeyboards = true">-->
+<!--        <mat-icon>keyboard</mat-icon>-->
+<!--      </button>-->
+<!--      <button class="example-icon" mat-icon-button matTooltip="Disable extra keyboards" *ngIf="keyboardService.showKeyboards" (click)="keyboardService.showKeyboards = false">-->
+<!--        <mat-icon>keyboard_hide</mat-icon>-->
+<!--      </button>-->
       <button (click)="openDialog()" mat-icon-button matTooltip="Profile"><mat-icon class="example-icon">person</mat-icon></button>
     </mat-toolbar>
     <app-message></app-message>
@@ -31,4 +45,3 @@
     </footer>
   </mat-drawer-content>
 </mat-drawer-container>
-

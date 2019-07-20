@@ -37,9 +37,6 @@ export class DashboardComponent implements OnInit {
       this.languageService.getLanguage(token).subscribe((language: string) => {
           this.language = language;
           this.setTotalWords(token, language);
-        },
-        (err) => {
-          this.messageService.messages.push(new Message('An error occurred: ', `${err.error.message || err.message}`, 'alert-danger'));
         });
     });
   }
@@ -52,6 +49,8 @@ export class DashboardComponent implements OnInit {
       const diff = Math.abs(new Date(pageable.content[0].timeCreated).getTime() - new Date().getTime());
       this.days = Math.ceil(diff / (1000 * 3600 * 24) + 1);
       this.setDifficultWords(token, language);
+    }, (err) => {
+      this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'], 'alert-danger'));
     });
   }
 
@@ -69,6 +68,8 @@ export class DashboardComponent implements OnInit {
               a.timePractice).getTime() - new Date(b.timePractice).getTime())
             [this.difficultWords].timePractice).getTime() - new Date().getTime()) / (1000 * 3600 * 24));
       this.setWordsAddedPerDay(pageable);
+    }, (err) => {
+      this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'], 'alert-danger'));
     });
   }
 

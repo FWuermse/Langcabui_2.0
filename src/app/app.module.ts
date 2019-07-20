@@ -28,7 +28,7 @@ import {
   MatDividerModule,
   MatRippleModule,
   MatCardModule,
-  MatProgressSpinnerModule, MatTooltipModule,
+  MatProgressSpinnerModule, MatTooltipModule, MatSelectModule,
 } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import {AreYouSureDialog, WordsComponent} from './words/words.component';
@@ -45,6 +45,7 @@ import { HomeComponent } from './home/home.component';
 import { LanguagesComponent } from './languages/languages.component';
 import { PrivacyComponent } from './termsandprivacy/privacy.component';
 import {TermsComponent} from './termsandprivacy/terms.component';
+import {TrainRandomComponent} from './train/train.random.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import {TermsComponent} from './termsandprivacy/terms.component';
     HomeComponent,
     LanguagesComponent,
     PrivacyComponent,
-    TermsComponent
+    TermsComponent,
+    TrainRandomComponent
   ],
   imports: [
     BrowserModule,
@@ -92,7 +94,8 @@ import {TermsComponent} from './termsandprivacy/terms.component';
     MatRippleModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSelectModule
   ],
   entryComponents: [LoginDialog, AreYouSureDialog],
   providers: [],

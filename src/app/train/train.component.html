@@ -1,44 +1,50 @@
-<div *ngIf="overdueWords.length > 0" class="container">
-  <p style="margin-top: 1%">Left for today: {{overdueWords.length}}</p>
-  <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
-  <div style="margin-top: 1%" class="card {{color}} mb-3">
-    <div class="card-header"><h3 style="text-align: center">{{selectedWord.wordChinese}}</h3></div>
+<div *ngIf="trainService.overdueWords.length > 0" class="container">
+  <div *ngIf="!trainService.random">
+    <p style="margin-top: 1%">Left for today: {{trainService.overdueWords.length}}</p>
+    <mat-progress-bar mode="determinate" [value]="trainService.progress"></mat-progress-bar>
+  </div>
+  <div style="margin-top: 1%" class="card {{trainService.color}} mb-3">
+    <div class="card-header"><h3 style="text-align: center">{{trainService.selectedWord.wordChinese}}</h3></div>
     <div class="card-body">
-      <div *ngIf="selectedWord.wordPinyin != null && onCheck">
-        <h5 style="text-align: center"><i>{{selectedWord.wordPinyin}}</i></h5>
+      <div *ngIf="trainService.selectedWord.wordPinyin != null && trainService.onCheck">
+        <h5 style="text-align: center"><i>{{trainService.selectedWord.wordPinyin}}</i></h5>
         <hr>
       </div>
-      <mat-icon style="cursor: pointer" color="primary" (click)="enableSuggestion()" aria-hidden="false" aria-label="help icon" matTooltip="Display a tip">help</mat-icon>
-      <mat-icon style="cursor: pointer" color="primary" (click)="revert()" aria-hidden="false" aria-label="swap icon" matTooltip="Revert words">swap_vertical_circle</mat-icon>
+      <mat-icon style="cursor: pointer" color="primary" (click)="trainService.enableSuggestion()" aria-hidden="false" aria-label="help icon" matTooltip="Display a tip">help</mat-icon>
+      <mat-icon style="cursor: pointer" color="primary" (click)="trainService.revert()" aria-hidden="false" aria-label="swap icon" matTooltip="Revert words">swap_vertical_circle</mat-icon>
       <mat-icon style="cursor: pointer" color="primary" (click)="newWord()" aria-hidden="false" aria-label="skip" matTooltip="Skip this word">skip_next</mat-icon>
       <mat-chip-list aria-label="suggestions">
-        <div *ngFor="let ws of wordSuggestions">
-          <mat-chip style="cursor: pointer" *ngIf="reverted" (click)="response = ws.wordChinese">{{ws.wordChinese}}</mat-chip>
-          <mat-chip style="cursor: pointer" class="clickable" *ngIf="!reverted" (click)="response = ws.wordEnglish">{{ws.wordEnglish}}</mat-chip>
+        <div *ngFor="let ws of trainService.wordSuggestions">
+          <mat-chip style="cursor: pointer" *ngIf="trainService.reverted" (click)="trainService.response = ws.wordChinese">{{ws.wordChinese}}</mat-chip>
+          <mat-chip style="cursor: pointer" class="clickable" *ngIf="!trainService.reverted" (click)="trainService.response = ws.wordEnglish">{{ws.wordEnglish}}</mat-chip>
         </div>
       </mat-chip-list>
-      <div *ngIf="!onCheck">
+      <div *ngIf="!trainService.onCheck">
         <div class="row">
           <div class="col">
-            <mat-form-field focused="true" class="full-width">
+            <mat-form-field class="full-width">
               <mat-label>Translation here</mat-label>
-              <input matInput type="text" [(ngModel)]="response" (keyup.enter)="submit()">
+              <label>
+                <input matInput type="text" [(ngModel)]="trainService.response" (keyup.enter)="trainService.submit()">
+              </label>
             </mat-form-field>
           </div>
-          <button (click)="submit()" [disabled]="response === ''" mat-fab color="accent">
+          <button (click)="trainService.submit()" [disabled]="trainService.response === ''" mat-fab color="accent">
             <mat-icon aria-label="Add" style="color: white">check</mat-icon>
           </button>
         </div>
       </div>
-      <div *ngIf="onCheck">
+      <div *ngIf="trainService.onCheck">
         <div class="row">
           <div class="col">
-            <mat-form-field focused="true" class="full-width">
+            <mat-form-field class="full-width">
               <mat-label>Translation here</mat-label>
-              <input matInput type="text" [(ngModel)]="response" (keyup.enter)="newWord()">
+              <label>
+                <input autofocus matInput type="text" [(ngModel)]="trainService.response" (keyup.enter)="newWord()">
+              </label>
             </mat-form-field>
           </div>
-          <button (click)="newWord()" [disabled]="response === ''" mat-fab color="accent">
+          <button (click)="newWord()" [disabled]="trainService.response === ''" mat-fab color="accent">
             <mat-icon aria-label="Add" style="color: white">check</mat-icon>
           </button>
         </div>
@@ -50,7 +56,7 @@
 
 
 
-<div *ngIf="overdueWords.length <= 0" class="container" style="text-align: center">
+<div *ngIf="trainService.overdueWords.length <= 0" class="container" style="text-align: center">
   <div class="box">
     <div class="head">
       <div class="head-copy"></div>
@@ -119,6 +125,6 @@
     <div class="shadow"></div>
   </div>
   <h3>No words left for today.<br>
-    <!--Take a rest or <button>Shuffle</button>-->
+    Take a rest or <button mat-raised-button routerLink="/train/random" color="primary">Shuffle</button>
   </h3>
 </div>

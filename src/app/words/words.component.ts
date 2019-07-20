@@ -43,10 +43,9 @@ export class WordsComponent implements OnInit {
       this.languageService.getLanguage(token).subscribe((language: string) => {
           this.language = language;
           this.getWords(language, this.pageSize, this.pageIndex, this.pageSort, this.pageSortDirection);
-        },
-        (err) => {
-          this.messageService.messages.push(new Message('An error occurred: ', `${err.error.message || err.message}`, 'alert-danger'));
         });
+    }, (err) => {
+      this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'], 'alert-danger'));
     });
   }
 
@@ -60,7 +59,7 @@ export class WordsComponent implements OnInit {
           this.dataSource = new MatTableDataSource(this.words);
         },
         (err) => {
-          this.messageService.messages.push(new Message('An error occurred: ', `${err.error.message || err.message}`, 'alert-danger'));
+          this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'], 'alert-danger'));
         });
     });
   }
@@ -83,8 +82,10 @@ export class WordsComponent implements OnInit {
 
   delete(word: Word): void {
     const dialogRef = this.dialog.open(AreYouSureDialog, {data: word});
-    dialogRef.afterClosed().subscribe(n => {
+    dialogRef.afterClosed().subscribe(() => {
       this.getWords(this.language, this.pageSize, 0, this.pageSort, this.pageSortDirection);
+    }, (err) => {
+      this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'], 'alert-danger'));
     });
   }
 }
@@ -124,6 +125,8 @@ export class AreYouSureDialog {
     this.loginService.getToken().subscribe((token: string) => {
       this.wordsService.delete(word, token).subscribe(n => {
         this.messageService.messages.push(new Message('Success!', `${word.wordEnglish} has been deleted successfully`, 'alert-success'));
+      }, (err) => {
+        this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'], 'alert-danger'));
       });
     });
   }

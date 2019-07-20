@@ -20,6 +20,7 @@ export class FullWord {
   wordChinese: string;
   wordEnglish: string;
   wordPinyin: string;
+  wordId: number;
 }
 
 export class FullPageable {

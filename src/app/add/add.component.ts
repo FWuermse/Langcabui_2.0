@@ -22,7 +22,6 @@ export class AddComponent implements OnInit {
     private fb: FormBuilder
   ) {
   }
-
   language: string;
 
   word = this.fb.group({
@@ -37,9 +36,6 @@ export class AddComponent implements OnInit {
       this.languageService.getLanguage(token).subscribe((language: string) => {
           this.language = language;
           this.word.controls['language'].setValue(language);
-        },
-        (err) => {
-          this.messageService.messages.push(new Message('An error occurred: ', `${err.error.message || err.message}`, 'alert-danger'));
         });
     });
   }
@@ -54,7 +50,7 @@ export class AddComponent implements OnInit {
         this.location.back();
       },
       (err) => {
-        this.messageService.messages.push(new Message('An error occurred: ', `${err.error.message || err.message}`, 'alert-danger'));
+        this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'], 'alert-danger'));
       });
     });
   }

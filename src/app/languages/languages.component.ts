@@ -34,7 +34,7 @@ export class LanguagesComponent implements OnInit {
           this.languages = languages;
         },
         (err) => {
-          this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'], 'alert-danger'));
+          this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'] + '. Are you logged in?', 'alert-danger'));
         });
     });
   }

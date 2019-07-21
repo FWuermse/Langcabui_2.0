@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  ui:
+    image: langcab_ui
+    container_name: langcab_ui
+    restart: always
+    networks:
+      - web
+    labels:
+      - "traefik.docker.network=web"
+      - "traefik.enable=true"
+      - "traefik.frontend.rule=Host:www.langcab.com,langcab.com"
+
+networks:
+  web:
+    external: true

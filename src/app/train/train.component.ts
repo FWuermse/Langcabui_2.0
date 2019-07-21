@@ -32,11 +32,7 @@ export class TrainComponent implements OnInit {
     this.loginService.getToken().subscribe((token: string) => {
       this.languageService.getLanguage(token).subscribe((language: string) => {
           this.language = language;
-        },
-        (err) => {
-          this.messageService.messages.push(new Message('An error occurred: ', `${err.error.message || err.message}`, 'alert-danger'));
         });
     });
   }
-
 }

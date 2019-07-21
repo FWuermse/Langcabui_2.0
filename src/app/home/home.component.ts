@@ -8,7 +8,7 @@ import {LoginDialog} from '../app.component';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  private showAds: boolean;
+  showAds: boolean;
 
   constructor(public dialog: MatDialog) {
   }

@@ -1,6 +1,6 @@
-@import '/assets/custom-material-themes/primary-theme';
-@import '/assets/custom-material-themes/secondary-theme';
-@import '/assets/custom-material-themes/tertiary-theme';
+@import '/custom-material-themes/primary-theme';
+@import '/custom-material-themes/secondary-theme';
+@import '/custom-material-themes/tertiary-theme';
 @import '~@angular/material/theming';
 @include mat-core();
 .primary-theme {

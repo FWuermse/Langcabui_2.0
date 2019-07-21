@@ -29,7 +29,7 @@ export class TrainAllComponent implements OnInit {
           this.trainService.setFirstWord();
         },
         (err) => {
-          this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'] + '. Are you logged in?', 'alert-danger'));
+          this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'], 'alert-danger'));
         });
     });
   }

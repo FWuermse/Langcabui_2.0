@@ -31,7 +31,11 @@ export class LanguageService {
         if (JSON.parse(err.error)['message'] === 'Welcome! Start by adding your first word.') {
           this.messageService.messages.push(new Message('Info', JSON.parse(err.error)['message'], 'alert-info'));
         } else {
-          this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'], 'alert-danger'));
+          if (JSON.parse(err.error)['message'] === 'No message available') {
+            this.messageService.messages.push(new Message('Warning', 'You are not logged in. Please log in by clicking on the profile icon.', 'alert-warning'));
+          } else {
+            this.messageService.messages.push(new Message('Error', JSON.parse(err.error)['message'], 'alert-danger'));
+          }
         }
         });
       return language;

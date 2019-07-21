@@ -87,7 +87,6 @@ import {AdsenseModule} from 'ng2-adsense';
     AngularFireAuthModule,
     AdsenseModule.forRoot({
       adClient: 'ca-pub-7364276574790830',
-      adSlot: 9344305724,
     }),
     MatTableModule,
     MatSortModule,

@@ -21,3 +21,8 @@ body {
 .mat-tooltip {
   font-size: 11pt !important;
 }
+
+button:focus, button:active:focus, button.active:focus {
+  outline: none !important;
+  outline-style: none !important;
+}

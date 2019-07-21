@@ -8,6 +8,7 @@ import {LoginDialog} from '../app.component';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  private showAds: boolean;
 
   constructor(public dialog: MatDialog) {
   }
@@ -17,6 +18,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (window.screen.width > 1600) {
+      this.showAds = true;
+    }
   }
 
 }

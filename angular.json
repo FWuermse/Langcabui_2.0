@@ -22,7 +22,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": [ { "glob": "**/*", "input": "src/assets", "output": "/assets" } ],
+            "assets": ["src/assets"],
             "styles": [
               "src/styles.scss"
             ],
@@ -83,7 +83,7 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "assets": [ { "glob": "**/*", "input": "src/assets", "output": "/assets" } ]
+            "assets": ["src/assets"]
           }
         },
         "lint": {

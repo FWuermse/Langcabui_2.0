@@ -13,7 +13,7 @@ import {TermsComponent} from './termsandprivacy/terms.component';
 import {TrainRandomComponent} from './train/train.random.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'words', component: WordsComponent },
   { path: 'add', component: AddComponent },

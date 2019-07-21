@@ -1,4 +1,4 @@
-FROM node:10-alpine AS build
+FROM node:10 AS build
 WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm install && npm audit fix

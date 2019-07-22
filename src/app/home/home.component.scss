@@ -144,3 +144,18 @@ a:hover {
   text-align: center;
   margin: 5%;
 }
+
+#adsenseLeft {
+  float:left;
+  width:120px; height:600px;
+  margin: 1%;
+  position: fixed;
+}
+#adsenseRight {
+  float:right;
+  width:120px; height:600px;
+  margin: 1%;
+}
+#adsenseRightInner {
+  position: fixed;
+}

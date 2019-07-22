@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {LoginDialog} from '../app.component';
+import {debounceTime, map} from 'rxjs/operators';
+import {fromEvent} from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -18,9 +20,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (window.screen.width > 1600) {
-      this.showAds = true;
-    }
+    this.showAds = document.body.offsetWidth > 1400;
+    const checkScreenSize = () => document.body.offsetWidth > 1400;
+    fromEvent(window, 'resize').pipe(debounceTime(100)).pipe(map(checkScreenSize)).subscribe( screenBiggerThan => {
+      this.showAds = screenBiggerThan;
+    });
   }
 
 }

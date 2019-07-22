@@ -1,11 +1,14 @@
-<ng-adsense
-  [adClient]="'ca-pub-7364276574790830'"
-  [pageLevelAds]="true"
-></ng-adsense>
 <div class="container" style="text-align: center">
   <h1>Languages</h1>
   <mat-spinner [diameter]="40" *ngIf="!languages"></mat-spinner>
   <button *ngFor="let language of languages" mat-raised-button (click)="changeLanguage(language)" [disabled]="currentLanguage === language" style="margin: 10px; height: 50px;">
     <h3>{{language}}</h3>
   </button>
+  <ng-adsense
+    [adClient]="'ca-pub-7364276574790830'"
+    [adSlot]="4157273295"
+    [display]="'block'"
+    [adFormat]="'auto'"
+    [fullWidthResponsive]="true"
+  ></ng-adsense>
 </div>

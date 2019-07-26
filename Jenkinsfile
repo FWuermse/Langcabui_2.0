@@ -6,8 +6,21 @@ pipeline {
     stages {
         stage('Undeploy old version') {
             steps {
-                sh 'sudo docker stop $CN && sudo docker rm $CN'
-                sh 'sudo docker rmi $CN'
+                script {
+            	    if (sh(script: """sudo docker ps -q -f name=${env.CN}""", returnStdout: true).trim()) {
+            	        sh(script: """sudo docker stop ${env.CN} && sudo docker rm ${env.CN}""", returnStdout: false)
+            	    } else {
+            	       if (sh(script: """sudo docker ps -aq -f status=exited -f name=${env.CN}""", returnStdout: true).trim()) {
+            	           sh(script: """sudo docker rm ${env.CN}""", returnStdout: false)
+            	        } else {
+            	            echo """Container ${env.CN} does not exist"""
+            	        }
+            	    }
+            	    if (sh(script: """sudo docker images -q ${env.CN}""", returnStdout: true).trim()) {
+            	        sh(script: """sudo docker images -q ${env.CN}""", returnStdout: false)
+            	    }
+            	    
+                }
             }
         }
         stage('Build npm') {

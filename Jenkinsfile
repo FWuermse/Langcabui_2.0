@@ -17,9 +17,8 @@ pipeline {
             	        }
             	    }
             	    if (sh(script: """sudo docker images -q ${env.CN}""", returnStdout: true).trim()) {
-            	        sh(script: """sudo docker images -q ${env.CN}""", returnStdout: false)
+            	        sh(script: """sudo docker rmi ${env.CN}""", returnStdout: false)
             	    }
-            	    
                 }
             }
         }

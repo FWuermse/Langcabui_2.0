@@ -128,7 +128,7 @@ export class TrainService {
   }
 
   wordRevert(word: Word) {
-    return new Word(word.wordId, word.wordChinese, word.wordPinyin, word.wordEnglish, word.language);
+    return new Word(word.wordId, word.wordChinese, word.wordPinyin, word.wordEnglish, word.language, word.tags);
   }
 
   revert() {

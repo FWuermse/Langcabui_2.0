@@ -5,7 +5,6 @@ import {TrainService} from './train.service';
 import {Message, MessageService} from '../message/message.service';
 import {Word} from '../words/word';
 import {FullPageable, FullWord, WordsService} from '../words/words.service';
-import {noUndefined} from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-random-language',
@@ -98,8 +97,6 @@ export class TrainRandomComponent implements OnInit {
   }
 
   toWord(word: FullWord): Word {
-    const newWord = new Word(word.wordId, word.wordEnglish, word.wordPinyin, word.wordChinese, word.language);
-    newWord.tags = ['repeat'];
-    return newWord;
+    return new Word(word.wordId, word.wordEnglish, word.wordPinyin, word.wordChinese, word.language, ['repeat']);
   }
 }

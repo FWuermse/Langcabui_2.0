@@ -13,7 +13,7 @@
 
         <mat-chip-list *ngIf="keyboardService.hanziList && keyboardService.showKeyboards">
           <div *ngIf="keyboardService.hanziList[1]">
-            <mat-chip *ngFor="let hanzi of keyboardService.hanziList[1][0][1]" color="primary" [selected]="hanzi === keyboardService.hanziList[1][0][1][keyboardService.index]" (click)="keyboardService.select(hanzi)">{{hanzi}}</mat-chip>
+            <mat-chip *ngFor="let hanzi of keyboardService.hanziList[1][0][1]" color="primary" [selected]="hanzi === keyboardService.hanziList[1][0][1][keyboardService.index]" (click)="keyboardService.select(hanzi); searchQuery = keyboardService.input; search()">{{hanzi}}</mat-chip>
           </div>
         </mat-chip-list>
 

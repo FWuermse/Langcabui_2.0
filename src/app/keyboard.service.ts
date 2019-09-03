@@ -20,7 +20,7 @@ export class KeyboardService {
     this.index = 0;
     return this.http
       .get(`${this.url}?text=${this
-        .removeHanzi(query)}&itc=${this.selectedKeyboard}&num=${amountOfResults}&cp=0&cs=1&ie=utf-8&oe=utf-8`)
+        .removeHanzi(query.toLowerCase())}&itc=${this.selectedKeyboard}&num=${amountOfResults}&cp=0&cs=1&ie=utf-8&oe=utf-8`)
       .subscribe((r) => {
         this.hanziList = r;
       });

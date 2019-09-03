@@ -5,8 +5,7 @@ import {AppComponent, LoginDialog} from './app.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -47,6 +46,7 @@ import { PrivacyComponent } from './termsandprivacy/privacy.component';
 import {TermsComponent} from './termsandprivacy/terms.component';
 import {TrainRandomComponent} from './train/train.random.component';
 import {AdsenseModule} from 'ng2-adsense';
+import {AngularFireAuthModule} from '@angular/fire/auth';
 
 @NgModule({
   declarations: [

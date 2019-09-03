@@ -67,7 +67,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
     LanguagesComponent,
     PrivacyComponent,
     TermsComponent,
-    TrainRandomComponent
+    TrainRandomComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import {FormBuilder, Validators} from '@angular/forms';
 import {LoginService} from './login/login.service';
+import {KeyboardService} from './keyboard.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import {LoginService} from './login/login.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, public keyboardService: KeyboardService) {
   }
 
   openDialog(): void {

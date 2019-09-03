@@ -1,10 +1,11 @@
-import {Message, MessageService} from './../message/message.service';
+import {Message, MessageService} from '../message/message.service';
 import {LoginService} from '../login/login.service';
 import {LanguageService} from '../languages/language.service';
 import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {WordsService} from './words.service';
 import {Word} from './word';
+import {KeyboardService} from '../keyboard.service';
 
 @Component({
   selector: 'app-words',
@@ -30,6 +31,7 @@ export class WordsComponent implements OnInit {
     private languageService: LanguageService,
     public wordsService: WordsService,
     private loginService: LoginService,
+    public keyboardService: KeyboardService,
     private messageService: MessageService,
     public dialog: MatDialog) {
   }
@@ -77,6 +79,10 @@ export class WordsComponent implements OnInit {
   }
 
   search() {
+    if (this.keyboardService.showKeyboards) {
+      this.keyboardService.input = this.searchQuery;
+      this.keyboardService.search(this.keyboardService.input, 11);
+    }
     this.getWords(this.language, this.pageSize, 0, this.pageSort, this.pageSortDirection);
   }
 

@@ -1,9 +1,21 @@
 <div class="container">
   <div class="row">
     <div class="col-9">
-      <mat-form-field focused appearance="outline" class="almost-full-width">
+      <mat-form-field focused appearance="outline"
+                      class="almost-full-width"
+                      (keydown.arrowLeft)="keyboardService.movePrevious()"
+                      (keyup.enter)="keyboardService.select(keyboardService.hanziList[1][0][1][keyboardService.index]); searchQuery = keyboardService.input; search()">
         <mat-label>Search</mat-label>
-        <input matInput type="text" [(ngModel)]="searchQuery" (ngModelChange)="search()">
+        <label>
+          <input matInput type="text" [(ngModel)]="searchQuery" (ngModelChange)="search()">
+        </label>
+
+        <mat-chip-list *ngIf="keyboardService.hanziList && keyboardService.showKeyboards">
+          <div *ngIf="keyboardService.hanziList[1]">
+            <mat-chip *ngFor="let hanzi of keyboardService.hanziList[1][0][1]" color="primary" [selected]="hanzi === keyboardService.hanziList[1][0][1][keyboardService.index]" (click)="keyboardService.select(hanzi)">{{hanzi}}</mat-chip>
+          </div>
+        </mat-chip-list>
+
         <button mat-button *ngIf="searchQuery" matSuffix mat-icon-button aria-label="Clear" (click)="searchQuery=''; search()">
           <mat-icon>close</mat-icon>
         </button>

@@ -4,6 +4,7 @@
       <mat-form-field focused appearance="outline"
                       class="almost-full-width"
                       (keydown.arrowLeft)="keyboardService.movePrevious()"
+                      (keydown.arrowRight)="keyboardService.moveNext()"
                       (keyup.enter)="keyboardService.select(keyboardService.hanziList[1][0][1][keyboardService.index]); searchQuery = keyboardService.input; search()">
         <mat-label>Search</mat-label>
         <label>

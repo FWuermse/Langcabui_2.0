@@ -8,7 +8,7 @@
                       (keyup.enter)="keyboardService.select(keyboardService.hanziList[1][0][1][keyboardService.index]); searchQuery = keyboardService.input; search()">
         <mat-label>Search</mat-label>
         <label>
-          <input matInput type="text" [(ngModel)]="searchQuery" (ngModelChange)="search()">
+          <input matInput type="text" [(ngModel)]="searchQuery" (ngModelChange)="search()" autocomplete="off">
         </label>
 
         <mat-chip-list *ngIf="keyboardService.hanziList && keyboardService.showKeyboards">
